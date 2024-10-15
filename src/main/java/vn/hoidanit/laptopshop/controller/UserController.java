@@ -5,7 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
+import java.util.List;
 import vn.hoidanit.laptopshop.domain.User;
 import vn.hoidanit.laptopshop.service.UserService;
 
@@ -20,21 +20,32 @@ public class UserController {
 
     @RequestMapping("/")
     public String getHomePage(Model model) {
-        String message = this.userService.handleHello();
-        model.addAttribute("message", message);
+        List<User> users = this.userService.getAllUsersByEmail("np2911@gmail.com");
+        System.out.println("Users: " + users);
+
+        model.addAttribute("message", "message from controller");
         return "hello";
     }
 
+    // Get user page (table info view)
     @RequestMapping("/admin/user")
     public String getUserPage(Model model) {
+        List<User> users = this.userService.getAllUsers();
+        model.addAttribute("users", users);
+        return "admin/user/table-user";
+    }
+
+    // Get create user page (view)
+    @RequestMapping("/admin/user/create")
+    public String getCreateUserPage(Model model) {
         model.addAttribute("newUser", new User());
         return "admin/user/create";
     }
 
+    // Create user (create user by button confirm click)
     @RequestMapping(value = "/admin/user/create", method = RequestMethod.POST)
     public String createUserPage(Model model, @ModelAttribute("newUser") User newUser) {
-        System.out.println("Create user" + newUser);
         this.userService.handelSaveUser(newUser);
-        return "hello";
+        return "redirect:/admin/user"; // redirect to user page (table info)
     }
 }
