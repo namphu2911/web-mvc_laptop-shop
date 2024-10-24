@@ -1,4 +1,4 @@
-package vn.hoidanit.laptopshop.controller;
+package vn.hoidanit.laptopshop.controller.admin;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,7 +36,7 @@ public class UserController {
     public String getUserPage(Model model) {
         List<User> users = this.userService.getAllUsers();
         model.addAttribute("users", users);
-        return "admin/user/table-user";
+        return "admin/user/show";
     }
 
     @RequestMapping("/admin/user/{id}")
@@ -44,7 +44,7 @@ public class UserController {
         User user = this.userService.getUserById(id);
         model.addAttribute("id", id);
         model.addAttribute("userDetail", user);
-        return "admin/user/show";
+        return "admin/user/detail";
     }
 
     // Get create user page (view)
@@ -65,7 +65,7 @@ public class UserController {
     @RequestMapping("/admin/user/update/{id}")
     public String getUserUpdatePage(Model model, @PathVariable long id) {
         User currentUser = this.userService.getUserById(id);
-        model.addAttribute("newUser", currentUser);
+        model.addAttribute("currentUser", currentUser);
         return "admin/user/update";
     }
 

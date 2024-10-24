@@ -9,7 +9,7 @@
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
             <meta name="description" content="Hỏi Dân IT - Dự án laptopshop" />
             <meta name="author" content="Hỏi Dân IT" />
-            <title>Delete User ${id} - Laptop Shop</title>
+            <title>Dashboard - Hỏi Dân IT</title>
             <link href="/css/styles.css" rel="stylesheet" />
             <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         </head>
@@ -21,28 +21,12 @@
                 <div id="layoutSidenav_content">
                     <main>
                         <div class="container-fluid px-4">
-                            <h1 class="mt-4">Manage Users</h1>
+                            <h1 class="mt-4">Manage Orders</h1>
                             <ol class="breadcrumb mb-4">
                                 <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-                                <li class="breadcrumb-item active">Users</li>
+                                <li class="breadcrumb-item active">Order</li>
                             </ol>
-                            <div class="mt-5">
-                                <div class="row">
-                                    <div class="col-12 mx-auto">
-                                        <div class="d-flex justify-content-between">
-                                            <h3>Delete User with id = ${id}</h3>
-                                        </div>
-
-                                        <hr />
-                                        <div class="alert alert-danger" role="alert">
-                                            Are you sure to delete this user?
-                                        </div>
-                                        <form:form method="post" action="/admin/user/delete">
-                                            <button class="btn btn-danger" name="id" value="${id}">Confirm</button>
-                                        </form:form>
-                                    </div>
-                                </div>
-                            </div>
+                            <div>table Order</div>
                         </div>
                     </main>
                     <jsp:include page="../layout/footer.jsp" />
