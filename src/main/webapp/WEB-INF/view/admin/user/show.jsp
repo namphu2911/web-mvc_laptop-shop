@@ -41,6 +41,7 @@
                           <th>ID</th>
                           <th>Email</th>
                           <th>Full Name</th>
+                          <th>Role</th>
                           <th>Action</th>
                         </tr>
                       </thead>
@@ -50,6 +51,7 @@
                             <td>${user.id}</td>
                             <td>${user.email}</td>
                             <td>${user.fullName}</td>
+                            <td>${user.role.name}</td>
                             <td>
                               <a class="btn btn-success" href="/admin/user/${user.id}">View</a>
                               <a class="btn btn-warning mx-2" href="/admin/user/update/${user.id}">Update</a>
@@ -69,7 +71,7 @@
       </div>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         crossorigin="anonymous"></script>
-      <script src="js/scripts.js"></script>
+      <!-- <script src="js/scripts.js"></script> -->
     </body>
 
     </html>

@@ -40,8 +40,13 @@
                         <li class="list-group-item">Id: ${userDetail.id}</li>
                         <li class="list-group-item">Email: ${userDetail.email}</li>
                         <li class="list-group-item">Full Name: ${userDetail.fullName}</li>
+                        <li class="list-group-item">Role: ${userDetail.role.name}</li>
                         <li class="list-group-item">Address: ${userDetail.address}</li>
                         <li class="list-group-item">Phone: ${userDetail.phone}</li>
+                        <li class="list-group-item">
+                          <img src="${pageContext.servletContext.contextPath}/images/avatar/${userDetail.avatar}"
+                            alt="No User Avatar" style="max-width: 150px; height: auto;" />
+                        </li>
                       </ul>
                     </div>
                     <a href="/admin/user" class="btn btn-success mt-3">Back</a>
@@ -55,7 +60,7 @@
       </div>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         crossorigin="anonymous"></script>
-      <script src="js/scripts.js"></script>
+      <!-- <script src="js/scripts.js"></script> -->
     </body>
 
     </html>
