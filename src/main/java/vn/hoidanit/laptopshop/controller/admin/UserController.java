@@ -29,15 +29,6 @@ public class UserController {
         this.passwordEncoder = passwordEncoder;
     }
 
-    @RequestMapping("/")
-    public String getHomePage(Model model) {
-        List<User> users = this.userService.getAllUsersByEmail("np2911@gmail.com");
-        System.out.println("Users: " + users);
-
-        model.addAttribute("message", "message from controller");
-        return "hello";
-    }
-
     // Get user page (table info view)
     @RequestMapping("/admin/user")
     public String getUserPage(Model model) {
