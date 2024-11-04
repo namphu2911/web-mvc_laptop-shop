@@ -3,6 +3,7 @@ package vn.hoidanit.laptopshop.controller.admin;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+
+import jakarta.validation.Valid;
 
 @Controller
 public class UserController {
@@ -54,8 +57,19 @@ public class UserController {
 
     // Create user (create user by button confirm click)
     @PostMapping(value = "/admin/user/create")
-    public String createUserPage(Model model, @ModelAttribute("newUser") User newUser,
-            @RequestParam("imageFile") MultipartFile file) {
+    public String createUserPage(Model model, @ModelAttribute("newUser") @Valid User newUser,
+            BindingResult newUserBindingResult, @RequestParam("imageFile") MultipartFile file) {
+
+        // validate
+        // List<FieldError> errors = newUserBindingResult.getFieldErrors();
+        // for (FieldError error : errors) {
+        // System.out.println(error.getField() + " - " + error.getDefaultMessage());
+        // }
+
+        if (newUserBindingResult.hasErrors()) {
+            return "admin/user/create";
+        }
+
         String avatar = this.uploadService.handleSaveUploadFile(file, "avatar");
         String hashPassword = this.passwordEncoder.encode(newUser.getPassword());
 
@@ -100,9 +114,9 @@ public class UserController {
     }
 
     @PostMapping("/admin/user/delete")
-    public String postDeleteUser(Model model, @RequestParam("id") long id) {
-        this.userService.deleteUserById(id);
-        return "redirect:/admin/user"; // redirect to user page (table info)
+    public String postDeleteUser(Model model, @ModelAttribute("newUser") User newUser) {
+        this.userService.deleteUserById(newUser.getId());
+        return "redirect:/admin/user";
     }
 
 }
