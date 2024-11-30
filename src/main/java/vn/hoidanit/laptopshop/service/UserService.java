@@ -30,10 +30,6 @@ public class UserService {
         this.orderRepository = orderRepository;
     }
 
-    public String handleHello() {
-        return "hello from user service";
-    }
-
     public User handelSaveUser(User user) {
         return this.userRepository.save(user);
     }
